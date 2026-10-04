@@ -153,6 +153,13 @@ void Library::displayAllBooks() {
         return;
     }
     
+	std::sort(books.begin(), books.end(), [](const unique_ptr<Book>& a, const unique_ptr<Book>& b) {
+		if (a->getTitle() == b->getTitle()) {
+			return a->getAuthor() < b->getAuthor();
+		}
+		return a->getTitle() < b->getTitle();
+	});
+
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < books.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
