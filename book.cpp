@@ -18,7 +18,7 @@ void Book::setISBN(const string &isbn) { this->isbn = isbn; }
 void Book::setAvailability(bool available) { isAvailable = available; }
 void Book::setBorrowerId(const string &id) { borrowerId = id; }
 
-void Book::checkOut(const string &borrowerId) {
+void Book::checkOut(const string& borrowerId) {
 	
 }
 
