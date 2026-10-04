@@ -1,6 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <ctime>
+
 #include "filemanager.h"
 
 using namespace std;
@@ -130,7 +132,11 @@ void FileManager::tryCreateLogsFile() {
 void FileManager::log(const std::string& message) {
 	ofstream logFile(dataDir + "/logs.txt", ios::app);
 	if (logFile.is_open()) {
-		logFile << message << endl;
+		time_t now = time(nullptr);
+		tm* localTime = localtime(&now);
+
+		logFile << put_time(localTime, "%Y-%m-%d %H:%M:%S") << " - " << message << endl;
+
 		logFile.close();
 	}
 }
