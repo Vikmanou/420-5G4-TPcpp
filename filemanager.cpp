@@ -6,8 +6,8 @@
 using namespace std;
 
 // Constructor
-FileManager::FileManager(const string& booksFile, const string& usersFile)
-    : booksFileName(booksFile), usersFileName(usersFile) {}
+FileManager::FileManager(const string& booksFile, const string& usersFile, const string& dataDir)
+    : booksFileName(booksFile), usersFileName(usersFile), dataDir(dataDir) {}
 
 // Save all library data
 bool FileManager::saveLibraryData(Library& library) {
@@ -122,7 +122,15 @@ void FileManager::createBackup() {
     cout << "Fichiers de sauvegarde créés.\n";
 }
 
-void FileManager::tryCreateLogsFile(const std::string& dataDir) {
+void FileManager::tryCreateLogsFile() {
 	if (this->fileExists(dataDir + "/logs.txt")) return;
 	ofstream logFile(dataDir + "/logs.txt");
+}
+
+void FileManager::log(const std::string& message) {
+	ofstream logFile(dataDir + "/logs.txt", ios::app);
+	if (logFile.is_open()) {
+		logFile << message << endl;
+		logFile.close();
+	}
 }

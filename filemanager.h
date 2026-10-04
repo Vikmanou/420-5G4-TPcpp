@@ -14,7 +14,7 @@ private:
 
 public:
     // Constructor
-    FileManager(const string& booksFile, const string& usersFile);
+    FileManager(const string& booksFile, const string& usersFile, const string& dataDir);
     
     // File operations
     bool saveLibraryData(Library& library);
@@ -30,7 +30,10 @@ public:
     bool fileExists(const string& filename);
     void createBackup();
 
-	void tryCreateLogsFile(const string& dataDir);
+	void tryCreateLogsFile();
+	void log(const string& message);
+
+	string dataDir;
 };
 
 #endif
