@@ -52,7 +52,7 @@ void printUsage(const char* programName) {
 int main(int argc, char* argv[]) {
     string dataDir;
 
-    for (int i = 1; i < argc; ++i) {
+    for (int i = 0; i < argc; ++i) {
         string arg = argv[i];
         if (arg == "--data-dir" || arg == "-d") {
             if (i + 1 >= argc) {
