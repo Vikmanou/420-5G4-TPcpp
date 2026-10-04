@@ -1,4 +1,5 @@
 #include "book.h"
+#include "library.h"
 
 Book::Book() : title(""), author(""), isbn(""), isAvailable(true), borrowerId("") {}
 Book::Book(const string &title, const string &author, const string &isbn)
@@ -28,10 +29,16 @@ void Book::returnBook() {
 	setBorrowerId("");
 }
 
-string Book::toString() const {
-	return "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn +
-		"\nDisponible: " + (isAvailable ? "Oui" : "Non") +
-		(isAvailable ? "" : "\nEmprunté par: " + borrowerId);
+string Book::toString(Library& library) const {
+	if (!isAvailable) {
+		User* borrower = library.findUserById(borrowerId);
+		if (borrower) {
+			return "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn +
+				"\nDisponible: " + "Non" + "\nEmprunté par: " + borrower->getName();
+		}
+	}
+
+	return "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponible: " + "Oui" + "\n";
 }
 
 string Book::toFileFormat() const {
