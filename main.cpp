@@ -52,7 +52,7 @@ void printUsage(const char* programName) {
 int main(int argc, char* argv[]) {
     string dataDir;
 
-    for (int i = 0; i < argc; ++i) {
+    for (int i = 1; i < argc; ++i) {
         string arg = argv[i];
         if (arg == "--data-dir" || arg == "-d") {
             if (i + 1 >= argc) {
@@ -66,6 +66,12 @@ int main(int argc, char* argv[]) {
             printUsage(argv[0]);
             return 1;
         }
+    }
+
+    if (dataDir.empty()) {
+        cerr << "Erreur : le répertoire de donnees est requis.\n";
+        printUsage(argv[0]);
+        return 1;
     }
 
     string booksFile;
@@ -86,6 +92,8 @@ int main(int argc, char* argv[]) {
     // Load existing data
     cout << "Chargement des données de la bibliothèque...\n";
     fileManager.loadLibraryData(library);
+
+	fileManager.tryCreateLogsFile();
     
     int choice;
     bool running = true;
