@@ -176,6 +176,13 @@ void Library::displayAvailableBooks() {
         cout << "Aucun livre disponible pour emprunt.\n";
         return;
     }
+
+	std::sort(available.begin(), available.end(), [](const Book* a, const Book* b) {
+		if (a->getTitle() == b->getTitle()) {
+			return a->getAuthor() < b->getAuthor();
+		}
+		return a->getTitle() < b->getTitle();
+	});
     
     cout << "\n=== LIVRES DISPONIBLES ===\n";
     for (size_t i = 0; i < available.size(); ++i) {
