@@ -19,21 +19,38 @@ void Book::setAvailability(bool available) { isAvailable = available; }
 void Book::setBorrowerId(const string &id) { borrowerId = id; }
 
 void Book::checkOut(const string& borrowerId) {
-	
+	setAvailability(false);
+	setBorrowerId(borrowerId);
 }
 
 void Book::returnBook() {
-	
+	setAvailability(true);
+	setBorrowerId("");
 }
 
 string Book::toString() const {
-	return "";
+	return "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn +
+		"\nDisponible: " + (isAvailable ? "Oui" : "Non") +
+		(isAvailable ? "" : "\nEmprunté par: " + borrowerId);
 }
 
 string Book::toFileFormat() const {
-	return "";
+	return title + "|" + author + "|" + isbn + "|" + (isAvailable ? "1" : "0") + "|" + borrowerId;
 }
 
 void Book::fromFileFormat(const string &line) {
-	
+	std::string fields[5];
+
+	int start = 0;
+	for (int i = 0; i < 5; ++i) {
+		int endPos = line.find('|', start);
+		fields[i] = line.substr(start, endPos - start);
+		start = endPos + 1;
+	}
+
+	title = fields[0];
+	author = fields[1];
+	isbn = fields[2];
+	isAvailable = (fields[3] == "1");
+	borrowerId = fields[4];
 }
