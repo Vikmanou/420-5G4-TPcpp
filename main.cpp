@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
     cout << "Chargement des données de la bibliothèque...\n";
     fileManager.loadLibraryData(library);
 
-	fileManager.tryCreateLogsFile();
+	fileManager.tryCreateLogsFile(dataDir);
     
     int choice;
     bool running = true;

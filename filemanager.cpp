@@ -121,3 +121,8 @@ void FileManager::createBackup() {
     
     cout << "Fichiers de sauvegarde créés.\n";
 }
+
+void FileManager::tryCreateLogsFile(const std::string& dataDir) {
+	if (this->fileExists(dataDir + "/logs.txt")) return;
+	ofstream logFile(dataDir + "/logs.txt");
+}
