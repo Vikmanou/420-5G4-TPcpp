@@ -54,3 +54,11 @@ Actuellement, les livres et les utilisateurs sont stockés dans des fichiers tex
 J'utiliserais plutôt SQLite.
 
 Pour l'utiliser en C++, j'utiliserais la bibliothèque de SQLite (`sqlite3.h`). Je remplacerais la classe `FileManager` par un gestionnaire `DatabaseManager` utilisant une approche fonctionnelle, capable d'exécuter des requêtes SQL au lieu de lire et d'écrire des fichiers texte. Les opérations de recherche et de tri par titre seraient effectuées directement par la base de données plutôt que par `std::sort`.
+
+## Fonctionnalités choisis
+
+### Interface et Expérience Utilisateur
+> Afficher le nom d’utilisateur plutôt que l’id dans l’affichage des livres.
+
+### Gestion des Données
+> Tri des résultats par titre, auteur pour l’affichage (utilisation de la fonction de tri de la STL).
