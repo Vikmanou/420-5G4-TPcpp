@@ -1,4 +1,4 @@
-# Author: Viken M.
+# Author: Viken M. (202379344)
 
 # Construire le projet
 Vous pouvez utiliser un dev container de base C++ de VScode.
